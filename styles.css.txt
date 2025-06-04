@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background: linear-gradient(to bottom, #ffd1dc, #ff65a2);
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* КНОПКА */
+#startButton {
+    background: rgba(90, 96, 255, 0.548);
+    color: black;
+    font-size: 24px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#startButton:hover {
+    background: rgb(255, 0, 204);
+}
+
+/* SVG */
+svg {
+    width: 300px;
+    height: 400px;
+    display: none; /* Скрыт до запуска */
+    opacity: 0; /* Для анимации появления */
+    transform: scale(0); /* Начинаем с нуля */
+}
+
+/* СТЕБЕЛЬ */
+.stem {
+    stroke: lime;
+    stroke-width: 6;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 15px lime);
+}
+
+/* ЛЕПЕСТКИ */
+.petal {
+    fill: deeppink;
+    opacity: 0; /* Скрыты до анимации */
+    transform: scale(0);
+    filter: drop-shadow(0 0 15px deeppink);
+}
+.special-petal {
+    fill: rgb(255, 234, 0);
+}
+
+/* АНИМАЦИЯ ПОЛНОГО ПОЯВЛЕНИЯ ЦВЕТКА */
+@keyframes flowerAppear {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* АНИМАЦИЯ ЛЕПЕСТКОВ */
+@keyframes bloom {
+    0% { opacity: 0; transform: scale(0); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Запуск анимации цветка */
+.animate {
+    animation: flowerAppear 3s ease-out forwards;
+}
+
+/* Запуск анимации лепестков */
+.animate .petal {
+    animation: bloom 1s ease-out forwards;
+    animation-delay: 1.5s; /* Чуть позже основного появления */
+}
+
+/* НЕОНОВАЯ НАДПИСЬ */
+
+/* Текст – правильная анимация появления */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.5); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* АНИМАЦИЯ ТЕКСТА */
+#message {
+    font-size: 28px;
+    color: rgb(0, 255, 85);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 10px rgba(38, 255, 0, 0.8), 0 0 20px rgba(0, 255, 60, 0.6);
+    border: none;
+    overflow-wrap: break-word; /* Перенос длинного текста */
+    text-align: center; /* Центрируем */
+    max-width: 90%; /* Чтобы не уходил за границы экрана */
+    opacity: 0; /* Скрываем перед показом */
+    transform: scale(0.5); /* Уменьшаем, чтобы не было скачка */
+}
+
+/* Класс, который добавляется через JS */
+.animate-text {
+    animation: fadeIn 2s ease-in-out forwards; /* Плавное появление */
+}
